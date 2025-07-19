@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>bleep bloop</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 20px;
+    }
+
+    .blinking {
+      animation: blink 1s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    #message {
+      margin-top: 30px;
+      color: red;
+      font-weight: bold;
+      font-size: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Initializing...</h1>
+  <pre id="terminal"></pre>
+  <div id="message">what? what?!<span class="blinking">pompadurr</span></div>
+
+  <script>
+    const terminal = document.getElementById("terminal");
+    const message = document.getElementById("message");
+
+    const fakeLogs = [
+      "start",
+      "diggin",
+      "in",
+      "yo",
+      "butt",
+      "twin",
+      "💔"
+    ];
+
+    let index = 0;
+
+    function typeLine() {
+      if (index < fakeLogs.length) {
+        terminal.innerHTML += fakeLogs[index] + "\n";
+        index++;
+        setTimeout(typeLine, 800);
+      } else {
+        message.style.display = "block";
+      }
+    }
+
+    typeLine();
+  </script>
+</body>
+</html>
